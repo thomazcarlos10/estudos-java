@@ -1,0 +1,2 @@
+public record Person(String name, Integer age, String city) {
+}

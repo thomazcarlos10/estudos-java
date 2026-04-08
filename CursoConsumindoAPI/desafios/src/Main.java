@@ -1,3 +1,6 @@
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -52,4 +55,26 @@ void main() throws IOException, InterruptedException {
     System.out.println(response2.body());
 
     scanner.close();
+
+    // Ex04
+    String jsonPerson = "{\"name\":\"Rodrigo\",\"age\":20,\"city\":\"Brasília\"}";
+
+    Gson gson = new Gson();
+    Person person = gson.fromJson(jsonPerson, Person.class);
+    System.out.println(person);
+
+    // Ex05
+    String jsonPerson1 = "{\"name\":\"Rodrigo\",\"city\":\"Brasília\"}";
+
+    Gson gson1 = new GsonBuilder().setLenient().create();
+    Person person1 = gson1.fromJson(jsonPerson1, Person.class);
+
+    System.out.println("Objeto Pessoa: " + person1);
+
+    // Ex06
+    String jsonBook = "{\"title\":\"Aventuras do Java\",\"author\":\"Akemi\",\"publisher\":{\"name\":\"TechBooks\",\"city\":\"São Paulo\"}}";
+
+    Gson gson2 = new Gson();
+    Book book = gson2.fromJson(jsonBook, Book.class);
+    System.out.println(book);
 }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Estudos Java.iml" filepath="$PROJECT_DIR$/.idea/Estudos Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/EstudosJava.iml" filepath="$PROJECT_DIR$/.idea/EstudosJava.iml" />
       <module fileurl="file://$PROJECT_DIR$/CursoListasColecaoDados/desafiofinal/desafiofinal.iml" filepath="$PROJECT_DIR$/CursoListasColecaoDados/desafiofinal/desafiofinal.iml" />
       <module fileurl="file://$PROJECT_DIR$/CursoOrientacaoAObj/desafiofinal/desafiofinal2.iml" filepath="$PROJECT_DIR$/CursoOrientacaoAObj/desafiofinal/desafiofinal2.iml" />
       <module fileurl="file://$PROJECT_DIR$/CursoOrientacaoAObj/desafiofinal/src/desafiofinal3.iml" filepath="$PROJECT_DIR$/CursoOrientacaoAObj/desafiofinal/src/desafiofinal3.iml" />

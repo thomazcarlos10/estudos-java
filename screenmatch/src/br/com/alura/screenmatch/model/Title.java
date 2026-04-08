@@ -1,7 +1,6 @@
 package br.com.alura.screenmatch.model;
 
 public class Title implements Comparable<Title> {
-
     private String name;
     private Integer releaseYear;
     private Boolean includedInThePlan;
@@ -15,6 +14,12 @@ public class Title implements Comparable<Title> {
     public Title(String name, Integer releaseYear) {
         this.name = name;
         this.releaseYear = releaseYear;
+    }
+
+    public Title(TitleOmdb myTitleOmdb) {
+        this.name = myTitleOmdb.title();
+        this.releaseYear = Integer.valueOf(myTitleOmdb.year());
+        this.durationInMinutes = Integer.valueOf(myTitleOmdb.runtime().substring(0, 3));
     }
 
     public String getName() {
@@ -67,9 +72,6 @@ public class Title implements Comparable<Title> {
     public String toString() {
         return "Name: " + name
                 + ", Year: " + releaseYear
-                + ", Included in the plan: " + includedInThePlan
-                + ", Evaluations sum: " + evaluationsSum
-                + ", Total of reviews: " + totalOfReviews
                 + ", Duration in minutes: " + durationInMinutes;
     }
 
