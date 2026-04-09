@@ -7,7 +7,7 @@ import java.net.http.HttpResponse;
 
 void main() throws IOException, InterruptedException {
     Scanner scanner = new Scanner(System.in);
-
+/*
     // Ex01
     System.out.print("Digite o título do livro procurado: ");
     String bookSearch = scanner.nextLine();
@@ -54,8 +54,6 @@ void main() throws IOException, InterruptedException {
 
     System.out.println(response2.body());
 
-    scanner.close();
-
     // Ex04
     String jsonPerson = "{\"name\":\"Rodrigo\",\"age\":20,\"city\":\"Brasília\"}";
 
@@ -77,4 +75,73 @@ void main() throws IOException, InterruptedException {
     Gson gson2 = new Gson();
     Book book = gson2.fromJson(jsonBook, Book.class);
     System.out.println(book);
+
+    // Ex07
+    System.out.print("Digite o 1º número: ");
+    int numerator = scanner.nextInt();
+    System.out.print("Digite o 2º número: ");
+    int denominator = scanner.nextInt();
+
+    try {
+        int division = numerator / denominator;
+        System.out.println("Resultado da divisão: " + division);
+    } catch (ArithmeticException e) {
+        System.out.println("Error: not possible " + e.getMessage());
+    } finally {
+        System.out.println("Programa Encerrado!");
+    }
+
+    // Ex08
+    System.out.print("Digite sua senha: ");
+    String password = scanner.nextLine();
+
+    try {
+        validatePassword(password);
+    } catch (InvalidPasswordException e) {
+        System.out.println(e.getMessage());
+    }
+*/
+    // Ex09
+    System.out.print("Digite o nome do usuario do GitHub: ");
+    String username = scanner.nextLine();
+
+    String address = "https://api.github.com/users/" + username;
+
+    try {
+        HttpClient client3 = HttpClient.newHttpClient();
+        HttpRequest request3 = HttpRequest.newBuilder()
+                .uri(URI.create(address))
+                .header("Accept", "application/vnd.github.v3+json")
+                .build();
+        HttpResponse<String> response3 = client3
+                .send(request3, HttpResponse.BodyHandlers.ofString());
+
+        if (response3.statusCode() == 404) {
+            throw new GitHubQueryError("Usuario não encontrado.");
+        }
+
+        String jsonGitHub = response3.body();
+        System.out.println(jsonGitHub);
+
+        Gson gson3 = new GsonBuilder().setLenient().create();
+        UserGitHub userGitHub = gson3.fromJson(jsonGitHub, UserGitHub.class);
+        User user = new User(userGitHub);
+        System.out.println(user);
+
+    } catch (IOException | InterruptedException e) {
+        System.out.println("Opss… Houve um erro durante a consulta à API do GitHub.");
+        e.printStackTrace();
+    } catch (GitHubQueryError e) {
+        System.out.println(e.getMessage());
+    }
+
+    scanner.close();
+}
+
+private static void validatePassword(String password) {
+    if (password.length() >= 8) {
+        System.out.println("Senha válida, Nova senha: " + password);
+    } else {
+        throw new InvalidPasswordException("Error: the password must have at least 8 characters.");
+    }
 }
