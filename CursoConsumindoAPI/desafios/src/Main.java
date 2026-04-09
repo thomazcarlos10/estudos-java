@@ -7,7 +7,7 @@ import java.net.http.HttpResponse;
 
 void main() throws IOException, InterruptedException {
     Scanner scanner = new Scanner(System.in);
-/*
+
     // Ex01
     System.out.print("Digite o título do livro procurado: ");
     String bookSearch = scanner.nextLine();
@@ -100,7 +100,7 @@ void main() throws IOException, InterruptedException {
     } catch (InvalidPasswordException e) {
         System.out.println(e.getMessage());
     }
-*/
+
     // Ex09
     System.out.print("Digite o nome do usuario do GitHub: ");
     String username = scanner.nextLine();
