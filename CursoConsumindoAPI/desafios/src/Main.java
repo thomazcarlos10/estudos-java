@@ -135,7 +135,34 @@ void main() throws IOException, InterruptedException {
         System.out.println(e.getMessage());
     }
 
+    // Ex10
+    String data = "Conteúdo a ser gravado no arquivo.";
+
+    try(FileWriter fileWriter = new FileWriter("arquivo.txt")) {
+        fileWriter.write(data);
+        System.out.println("Dados gravados com sucesso.");
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
     scanner.close();
+
+    // Ex11/12
+    Title title = new Title("Guilherme Francisco", 2005);
+    Gson gson4 = new GsonBuilder()
+            .setLenient()
+            .setPrettyPrinting()
+            .create();
+    String json4 = gson4.toJson(title);
+    System.out.println(json4);
+
+    // Ex13
+    Vehicle vehicle = new Vehicle("Corolla", "Toyota", 2014, 40000.00);
+    Gson gson5 = new GsonBuilder()
+            .setLenient()
+            .setPrettyPrinting()
+            .create();
+    String json5 = gson5.toJson(vehicle);
+    System.out.println(json5);
 }
 
 private static void validatePassword(String password) {
